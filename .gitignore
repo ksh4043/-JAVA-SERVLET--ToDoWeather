@@ -1,0 +1,23 @@
+# Eclipse files
+.classpath
+.project
+.settings/
+
+# Build output
+/bin/
+build/
+target/
+*.class
+
+# Windows
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment
+*.env
+*.properties
+
+# META
+META-INF/
