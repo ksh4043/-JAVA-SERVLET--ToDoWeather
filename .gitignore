@@ -8,6 +8,8 @@
 build/
 target/
 *.class
+webapps/*.war
+webapps/*.jar
 
 # Windows
 Thumbs.db
@@ -21,3 +23,8 @@ Thumbs.db
 
 # META
 META-INF/
+
+# Tomcat
+tmp/
+work/
+logs/
