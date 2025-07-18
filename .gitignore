@@ -1,0 +1,30 @@
+# Eclipse files
+.classpath
+.project
+.settings/
+
+# Build output
+/bin/
+build/
+target/
+*.class
+webapps/*.war
+webapps/*.jar
+
+# Windows
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment
+*.env
+*.properties
+
+# META
+META-INF/
+
+# Tomcat
+tmp/
+work/
+logs/
