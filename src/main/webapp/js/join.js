@@ -41,14 +41,13 @@ function checkEmail() {
 	.then(res => {
 		if(!res.ok) {
 			console.log(res);
-			throw new Error("서버 오류 발생");
+			throw new Error("이메일 확인 응답 에러");
 		}
 		return res.json();
 	})
 	.then(data => {
 		if (data.success) {
-			// 로직 처리
-			console.log(data);
+			alert("정상 이메일 확인");
 		} else{
 			// 로직 처리
 			alert("안됨ㅋㅋ");
@@ -58,3 +57,29 @@ function checkEmail() {
 		console.log("에러 발생:", error);
 	});
 };
+
+function isEqualsCode(){
+	let inputAuthCode = document.querySelector(`input[name="authcode"]`).value;
+
+	fetch(`${contextPath}/auth/code`, {
+		method:"POST",
+		headers:{
+			"Content-Type":"application/json"
+		},
+		body:JSON.stringify({authcode: inputAuthCode.value})
+	})
+	.then(res => {
+		if(!res.ok){
+			console.log(res);
+			throw new Error("인증 코드 확인 응답 에러");
+		}
+		return res.json();
+	})
+	.then(data => {
+		if (data.success) {
+			alert("data:", data);
+		}else{
+			alert("응 안됨");
+		}
+	})
+}

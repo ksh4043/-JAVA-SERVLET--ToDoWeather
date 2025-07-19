@@ -19,7 +19,6 @@ public class EmailSender {
         if (parts.length != 2) return false;
 
         String domain = parts[1];
-        Properties props = new Properties();
         Properties domainProp = new Properties();
         EmailProperties emailProp = new EmailProperties();
         System.out.println("Create Instance for Properties");

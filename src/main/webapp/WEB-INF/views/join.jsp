@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta name="context-path" content="<%= request.getContextPath() %>">
-<script src="<%=contextPath %>/js/validate.js" defer></script>
+<script src="<%=contextPath %>/js/join.js" defer></script>
 </head>
 <body>
 	<h1>회원 가입 테스트 페이지</h1>
