@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 // 홈 화면
 @WebServlet("/home")
-public class MainServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+public class MainServlet extends HttpServlet {   
     public MainServlet() {
         super();
     }

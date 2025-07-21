@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 // 페이지 이동 경로를 지정하는 서블릿 클래스
 @WebServlet("/page")
 public class PageRounterServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
     public PageRounterServlet() {
         super();
     }
