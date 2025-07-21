@@ -4,12 +4,15 @@ const nicknameRegex = /^[가-힣a-zA-Z0-9]{3,12}$/;
 
 const contextPath = document.querySelector('meta[name="context-path"]').content;
 
-let emailInput, passwordInput, nickInput;
+let emailInput, passwordInput, nickInput, validateCode, isEmailVerife, inputAuthCode;
 
 document.addEventListener("DOMContentLoaded", () => {
 	emailInput = document.querySelector(`input[name="email"]`);
 	passwordInput = document.querySelector(`input[name="password"]`);
 	nickInput = document.querySelector(`input[name="nickname"]`);
+	validateCode = document.querySelector(`div[class="validateCode"]`);
+	
+    isEmailVerifed = false;
 });
 
 function validateForm(){
@@ -19,12 +22,17 @@ function validateForm(){
 	}
 		
 	if (!passwordRegex.test(passwordInput.value)){
-		alert("비밀번호 형식이 올바르지 않아용");
+		alert("비밀번호는 대소문자, 숫자, 특수문자를 포함하여 8~20자");
 		return false;
 	}
 	
 	if (!nicknameRegex.test(nickInput.value)){
 		alert("닉네임 형식이 올바르지 않아용");
+		return false;
+	}
+	
+	if (!isEmailVerifed) {
+		alert("이메일 인증을 완료해주세요.");
 		return false;
 	}
 	return true;
@@ -47,7 +55,7 @@ function checkEmail() {
 	})
 	.then(data => {
 		if (data.success) {
-			alert("정상 이메일 확인");
+			validateCode.style.display = 'inline-block';
 		} else{
 			// 로직 처리
 			alert("안됨ㅋㅋ");
@@ -59,14 +67,16 @@ function checkEmail() {
 };
 
 function isEqualsCode(){
-	let inputAuthCode = document.querySelector(`input[name="authcode"]`).value;
-
+	inputAuthCode = document.querySelector(`input[name="authcode"]`);
 	fetch(`${contextPath}/auth/code`, {
 		method:"POST",
 		headers:{
 			"Content-Type":"application/json"
 		},
-		body:JSON.stringify({authcode: inputAuthCode.value})
+		body:JSON.stringify({
+			authcode: inputAuthCode.value,
+			email: emailInput.value
+		})
 	})
 	.then(res => {
 		if(!res.ok){
@@ -77,7 +87,7 @@ function isEqualsCode(){
 	})
 	.then(data => {
 		if (data.success) {
-			alert("data:", data);
+			isEmailVerifed = true;
 		}else{
 			alert("응 안됨");
 		}

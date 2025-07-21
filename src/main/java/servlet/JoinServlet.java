@@ -22,6 +22,10 @@ public class JoinServlet extends HttpServlet {
 		String nickname = request.getParameter("nickname");
 		
 		System.out.println("email : " + email + " nickname : " + nickname + " password : " + password);
+		
+		// DB연결 로직
+		
+		// 회원 가입 - INSERT
 	}
 
 }

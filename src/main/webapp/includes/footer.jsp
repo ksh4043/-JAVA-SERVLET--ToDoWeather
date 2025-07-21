@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인</title>
+<title>${param.title != null ? param.title : 'todo-weather footer'}</title>
 </head>
 <body>
 
