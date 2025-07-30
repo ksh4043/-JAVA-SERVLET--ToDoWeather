@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -7,12 +14,77 @@
 }
 
 body {
-	max-width: 1920px;
-	max-height: 1080px;
 	display: flex;
-	
 }
 
-.validateCode {
+.joinContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100vh;
+}
+
+.join-header {
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+
+.join-form {
+	display: flex;
+	  flex-direction: column;
+	  align-items: center; /* 가운데 정렬 원하면 유지 */
+	  gap: 20px;
+}
+
+.form-container {
+	padding: 5px;
+	margin-top: 0;
+}
+
+h2 {
+	font-family: 'SUIT-Regular', sans-seirf;
+	font-size: 4em;
+	margin-top: 0;
+}
+
+.form-group {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	margin-bottom: 30px;
+	font-family: 'SUIT-Regular', sans-serif;
+	font-size: 1.5em;
+}
+
+.form-group > label {
+	display: inline-block;
+	width: 100px;
+	text-align: right;
+}
+
+.form-group > input {
+	width: 300px;
+	height: 30px;
+}
+
+.form-group > button {
+	font-family: 'SUIT-Regular', sans-serif;
+	font-size: 0.9em;
+}
+
+.form-group.validateCode {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	margin-bottom: 30px;
+	font-family: 'SUIT-Regular', sans-serif;
+	font-size: 1.5em;
 	display: none;
+}
+
+.form-group.validateCode > button {
+	font-family: 'SUIT-Regular', sans-serif;
+	font-size: 0.9em;
 }

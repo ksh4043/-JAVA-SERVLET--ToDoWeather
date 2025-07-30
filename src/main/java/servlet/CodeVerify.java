@@ -54,12 +54,13 @@ public class CodeVerify extends HttpServlet {
 		
 		if (!(email.equals(sesEmail) && authCode.equals(sesAuthCode))) {
 			resJson = Json.createObjectBuilder().add("success", false).build();
-			response.getWriter().write(resJson.toString());
+			response.getWriter().print(resJson.toString());
 			return;
+		}else {
+			resJson = Json.createObjectBuilder().add("success", true).build();
+			response.getWriter().print(resJson.toString());
 		}
-		
-		resJson = Json.createObjectBuilder().add("success", true).build();
-		response.getWriter().write(resJson.toString());
+		System.out.println(resJson);
 		
 	}
 

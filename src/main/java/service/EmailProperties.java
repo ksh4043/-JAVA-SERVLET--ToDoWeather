@@ -11,7 +11,6 @@ public class EmailProperties {
 	}
 	
 	protected Properties readProperties(String domain) {
-		System.out.println("readProperties domain : " + domain);
 		InputStream inputStream = null;
 		if (domain.equals("google.com")) {
 			inputStream = getClass().getClassLoader().getResourceAsStream("GOOGLE.properties");

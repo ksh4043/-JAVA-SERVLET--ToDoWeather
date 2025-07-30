@@ -8,9 +8,6 @@ import jakarta.mail.Transport;
 import jakarta.mail.internet.*;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.MessagingException;
-import jakarta.activation.*;
-import jakarta.activation.spi.*;
-import jakarta.mail.*;
 import java.util.Properties;
 
 public class EmailSender {
@@ -21,8 +18,6 @@ public class EmailSender {
         String domain = parts[1];
         Properties domainProp = new Properties();
         EmailProperties emailProp = new EmailProperties();
-        System.out.println("Create Instance for Properties");
-        System.out.println("domain : " + domain);
         domainProp = emailProp.readProperties(domain);
         
         if (domainProp == null) {
@@ -40,7 +35,6 @@ public class EmailSender {
         // .properties에서 가져온 설정 주입
         smtpProps.put("mail.smtp.host", domainProp.getProperty("mail.smtp.host"));
         smtpProps.put("mail.smtp.port", domainProp.getProperty("mail.smtp.port"));
-        System.out.println("port & host :" + smtpProps.getProperty("mail.smtp.host") + " " + smtpProps.getProperty("mail.smtp.port"));
 
         if ("465".equals(smtpProps.getProperty("mail.smtp.port"))) {
             smtpProps.put("mail.smtp.ssl.enable", "true");
@@ -74,6 +68,5 @@ public class EmailSender {
         message.setText("인증 코드: " + code);
 
         Transport.send(message);
-        System.out.println("메일 전송 완료: " + toEmail);
     }
 }

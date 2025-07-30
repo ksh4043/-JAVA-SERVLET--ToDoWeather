@@ -10,12 +10,51 @@ document.addEventListener("DOMContentLoaded", () => {
 	emailInput = document.querySelector(`input[name="email"]`);
 	passwordInput = document.querySelector(`input[name="password"]`);
 	nickInput = document.querySelector(`input[name="nickname"]`);
-	validateCode = document.querySelector(`div[class="validateCode"]`);
+	validateCode = document.querySelector(`div[class="form-group validateCode"]`);
 	
     isEmailVerifed = false;
 });
 
+function submitJoin() {
+	if (!validateForm) {
+		return false;
+	}
+	
+	fetch(`${contextPath}/join`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			email: emailInput.value,
+			password: passwordInput.value,
+			nickname: nickInput.value,
+		})
+	})
+	.then(res => {
+		if (!res.ok){
+			throw Error("Failed Register");
+		}
+		return res.json();
+	})
+	.then(data => {
+		if (!data.success){
+			alert("Invalid Data");
+		} else {
+			alert("회원 가입에 성공했습니다!");
+		}
+	})
+	.catch(error => {
+		console.log("에러 발생: " + error);
+	});
+}
+
 function validateForm(){
+	if (!isEmailVerife) {
+		alert("이메일 인증을 완료해주세요.");
+		return false;
+	}
+		
 	if (!emailRegex.test(emailInput.value)){
 		alert("이메일 형식이 올바르지 않아용");
 		return false;
@@ -30,11 +69,7 @@ function validateForm(){
 		alert("닉네임 형식이 올바르지 않아용");
 		return false;
 	}
-	
-	if (!isEmailVerifed) {
-		alert("이메일 인증을 완료해주세요.");
-		return false;
-	}
+
 	return true;
 }
 
@@ -48,7 +83,6 @@ function checkEmail() {
 	})
 	.then(res => {
 		if(!res.ok) {
-			console.log(res);
 			throw new Error("이메일 확인 응답 에러");
 		}
 		return res.json();
@@ -57,8 +91,7 @@ function checkEmail() {
 		if (data.success) {
 			validateCode.style.display = 'inline-block';
 		} else{
-			// 로직 처리
-			alert("안됨ㅋㅋ");
+			alert("이메일이 올바르지 않습니다.");
 		}
 	})
 	.catch(error => {
@@ -87,9 +120,13 @@ function isEqualsCode(){
 	})
 	.then(data => {
 		if (data.success) {
-			isEmailVerifed = true;
+			isEmailVerife = true;
+			alert("인증이 완료되었습니다!");
 		}else{
-			alert("응 안됨");
+			alert("인증 코드가 일치하지 않습니다.");
 		}
 	})
+	.catch(error => {
+		console.log("에러 발생: ", error);
+	});
 }
