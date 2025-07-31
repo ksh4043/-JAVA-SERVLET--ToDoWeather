@@ -3,7 +3,6 @@ package servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.servlet.ServletException;
